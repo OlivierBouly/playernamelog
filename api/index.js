@@ -16,6 +16,8 @@ app.use((req, res, next) => {
   const expectedApiKey = process.env.API_KEY;
 
   if (!apiKey || apiKey !== expectedApiKey) {
+    console.log(expectedApiKey);
+    console.log(apiKey);
     return res.status(401).json({ error: 'Unauthorized' });
   }
   
