@@ -26,11 +26,14 @@ app.use((req, res, next) => {
 });
 */
 // GET route to retrieve the list from the JSON file
-app.get('/api/data', async (req, res) => {
+app.get('/api', async (req, res) => {
   try {
+    const path = `/api/data`;
     const data = await fs.readFile(dataFilePath, 'utf-8');
     const parsedData = JSON.parse(data);
-    res.json(parsedData);
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
+    res.end(parsedData);
   } catch (error) {
     console.error('Error reading data file:', error);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -55,8 +58,9 @@ app.post('/api/data', async (req, res) => {
 
     // Write the updated data back to the file
     await fs.writeFile(dataFilePath, JSON.stringify(parsedCurrentData, null, 2), 'utf-8');
-
-    res.json({ message: 'List updated successfully', list: newData });
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
+    res.end({ message: 'List updated successfully', list: newData });
   } catch (error) {
     console.error('Error updating data file:', error);
     res.status(500).json({ error: 'Internal Server Error' });
