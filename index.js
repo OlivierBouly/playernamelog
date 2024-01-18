@@ -6,7 +6,12 @@ require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 
 import path from 'path';
-const dataFilePath = path.join(process.cwd(), 'tmp', 'data.json');
+try {
+  const dataFilePath = path.join(process.cwd(), 'tmp', 'data.json');
+} catch (error) {
+  console.error('Error finding data file:', error);
+}
+
 
 // Middleware to parse JSON requests
 app.use(express.json());
@@ -57,8 +62,7 @@ app.post('/', async (req, res) => {
 
     // Update the list with the new data
     parsedCurrentData = newData;
-
-    // Write the updated data back to the file
+    
     await fs.writeFile(dataFilePath, JSON.stringify(parsedCurrentData, null, 2), 'utf-8');
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
