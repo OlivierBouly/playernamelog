@@ -4,7 +4,7 @@ const bearerToken = require('express-bearer-token');
 const app = express();
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
-const dataFilePath = './api/data.json'; // Adjust the file path as needed
+const dataFilePath = './data.json'; // Adjust the file path as needed
 
 // Middleware to parse JSON requests
 app.use(express.json());
@@ -26,7 +26,7 @@ app.use((req, res, next) => {
 });
 */
 // GET route to retrieve the list from the JSON file
-app.get('/api', async (req, res) => {
+app.get('/', async (req, res) => {
   try {
     const path = `/api/data`;
     const data = await fs.readFile(dataFilePath, 'utf-8');
@@ -41,7 +41,7 @@ app.get('/api', async (req, res) => {
 });
 
 // POST route to update the list in the JSON file
-app.post('/api/data', async (req, res) => {
+app.post('/', async (req, res) => {
   try {
     const newData = req.body;
 
@@ -69,8 +69,7 @@ app.post('/api/data', async (req, res) => {
 
 module.exports = app;
 
-/*
+
 app.listen(PORT, () => {
   console.log(`Express server started on port ${PORT}`);
 });
-*/
