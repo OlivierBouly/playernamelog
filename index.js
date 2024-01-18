@@ -6,7 +6,7 @@ require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 
 import path from 'path';
-const dataFilePath = path.join(process.cwd(), 'files', 'data.json');
+const dataFilePath = path.join(process.cwd(), 'data.json');
 
 // Middleware to parse JSON requests
 app.use(express.json());
