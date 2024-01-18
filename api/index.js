@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(bearerToken());
 
 // Authentication middleware
+/*
 app.use((req, res, next) => {
   const apiKey = req.token || req.query.apiKey;
   const expectedApiKey = process.env.API_KEY;
@@ -23,7 +24,7 @@ app.use((req, res, next) => {
   
   next();
 });
-
+*/
 // GET route to retrieve the list from the JSON file
 app.get('/api/data', async (req, res) => {
   try {
