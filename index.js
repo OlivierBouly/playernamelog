@@ -35,7 +35,7 @@ app.get('/', async (req, res) => {
     const parsedData = JSON.parse(data);
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
-    res.end(parsedData);
+    res.json(parsedData);
   } catch (error) {
     console.error('Error reading data file:', error);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -62,7 +62,7 @@ app.post('/', async (req, res) => {
     await fs.writeFile(dataFilePath, JSON.stringify(parsedCurrentData, null, 2), 'utf-8');
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
-    res.end({ message: 'List updated successfully', list: newData });
+    res.json({ message: 'List updated successfully', list: newData });
   } catch (error) {
     console.error('Error updating data file:', error);
     res.status(500).json({ error: 'Internal Server Error' });
