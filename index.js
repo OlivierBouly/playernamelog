@@ -59,7 +59,7 @@ app.post('/', async (req, res) => {
     parsedCurrentData = newData;
 
     // Write the updated data back to the file
-    await fs.writeFile(dataFilePath, JSON.stringify(parsedCurrentData, null, 2), 'utf-8');
+    await fs.writeFileSync(dataFilePath, JSON.stringify(parsedCurrentData, null, 2), 'utf-8');
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
     res.json({ message: 'List updated successfully', list: newData });
