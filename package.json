@@ -1,0 +1,22 @@
+{
+  "name": "playernameslog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OlivierBouly/playernamelog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OlivierBouly/playernamelog/issues"
+  },
+  "homepage": "https://github.com/OlivierBouly/playernamelog#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
