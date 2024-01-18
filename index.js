@@ -4,7 +4,7 @@ const bearerToken = require('express-bearer-token');
 const app = express();
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
-const dataFilePath = './data.json'; // Adjust the file path as needed
+const dataFilePath = 'data.json'; // Adjust the file path as needed
 
 // Middleware to parse JSON requests
 app.use(express.json());
