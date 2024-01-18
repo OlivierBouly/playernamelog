@@ -60,6 +60,10 @@ app.post('/api/data', async (req, res) => {
   }
 });
 
+module.exports = app;
+
+/*
 app.listen(PORT, () => {
   console.log(`Express server started on port ${PORT}`);
 });
+*/
